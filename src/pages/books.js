@@ -9,7 +9,7 @@ const BooksPage = () => {
   const { allMarkdownRemark } = useStaticQuery(
     graphql`
       query {
-        allMarkdownRemark {
+        allMarkdownRemark (filter: {frontmatter: {type: {eq: "book"}}}) {
           edges {
             node {
               frontmatter {

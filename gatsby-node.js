@@ -4,6 +4,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   const bookTemplate = path.resolve(`src/templates/bookTemplate.js`)
+  const authorTemplate = path.resolve(`src/templates/authorTemplate.js`)
 
   const result = await graphql(`
     {
@@ -12,6 +13,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           node {
             frontmatter {
               path
+              type
             }
           }
         }
@@ -25,9 +27,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const pageTemplate = (node.frontmatter.type == 'author' ? authorTemplate : bookTemplate)
+    
     createPage({
       path: node.frontmatter.path,
-      component: bookTemplate,
+      component: pageTemplate,
       context: {}
     })
   })

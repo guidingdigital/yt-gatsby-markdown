@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -8,11 +8,11 @@ export default function Template({data}) {
     const { frontmatter, html } = markdownRemark
     return (
     <Layout>
-        <SEO title={frontmatter.title} />
+        <SEO title={frontmatter.authorName} />
 
-        <h1>{frontmatter.title}</h1>
-        <div>Author: <Link to={frontmatter.author.frontmatter.path}>{frontmatter.author.frontmatter.authorName}</Link> </div>
-        <div>Publish Date: {frontmatter.date}</div>
+        <h1>{frontmatter.name}</h1>
+        <div>Born: {frontmatter.birth}</div>
+        <div>Died: {frontmatter.death}</div>
         <div 
             dangerouslySetInnerHTML={{ __html: html }}
         />
@@ -26,14 +26,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         path
-        title
-        author {
-          frontmatter {
-            authorName
-            path
-          }
-        }
-        date
+        authorName
+        birth
+        death
       }
     }
   }

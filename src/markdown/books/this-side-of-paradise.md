@@ -1,5 +1,6 @@
 ---
 path: "/books/this-side-of-paradise"
+type: "book"
 title: "This Side of Paradise"
 author: "F. Scott Fitzgerald"
 date: "1920-03-26"
