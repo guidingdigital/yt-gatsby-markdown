@@ -14,7 +14,14 @@ const BooksPage = () => {
             node {
               frontmatter {
                 path
-                title             
+                title
+                thumbnailImage {
+                  childImageSharp {
+                    fixed(height: 150) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }             
               }
             }
           }

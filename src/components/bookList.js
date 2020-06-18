@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 
 const BookList = ({books}) => (
     <ul>
@@ -7,6 +8,9 @@ const BookList = ({books}) => (
             let book = item.node.frontmatter
             return (
                 <li>
+                    {book.thumbnailImage &&
+                        <Img fixed={book.thumbnailImage.childImageSharp.fixed} />
+                    }
                     <Link to={book.path}>{book.title}</Link>
                 </li>
             )
